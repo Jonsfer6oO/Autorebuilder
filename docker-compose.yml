@@ -36,5 +36,5 @@ services:
     networks:
       - gitea
     volumes:
-      - /home/pivan/python-project/WagbaShop:/data
+      - /home/pivan/python-project/test_services:/data
       - ~/.ssh:/root/.ssh

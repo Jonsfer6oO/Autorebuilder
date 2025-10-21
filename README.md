@@ -12,30 +12,29 @@ Autorebuilder - приложение, для автоматического об
 - HOST_IP - IP, по которому будет доступен сервер
 - PORT - порт для API
 - PATH_VOLUMES - каталог монтирования директории с хоста
+- SERVICES_LIST - строка с разделенными через пробел наваниями сервисов
 - MAIN_BRANCH - отслеживаемая ветка удаленного репозитория
 - REMOTE - название удаленного репозитория
 
 ##### Пример:
 ```.env
-- HOST_IP='0.0.0.0'
-- PORT='4000'
-- PATH_VOLUMES='/data'
-- MAIN_BRANCH='main'
-- REMOTE='origin'
+HOST_IP='0.0.0.0'
+PORT='4000'
+PATH_VOLUMES='/data'
+SERVICES_LIST='service_1 service_2 service_3 service_4'
+MAIN_BRANCH='master'
+REMOTE='origin'
 ```
 
 #### docker-compose.yml
 ```yml
 volumes:
-    - <путь_до_сервиса_на_хосте>:<значение_PATH_VOLUMES_env>
+    - <путь_до_папки_с_сервисами_на_хосте>:<значение_PATH_VOLUMES_env>
 ```
 
-#### in_container
-Для корректной работы необходимо залезть внутрь контенера и выполнить базовые команды git pull и git push 
-
 #### gitea/github
-В репозитории необходимо настроить вебхук на url: http://webhooks:4000/gitea/webhooks
-В событиях отправки вебхука, указать то, что вам необходимо
+В репозитории или глобально в github/gitea необходимо настроить вебхук на url: http://webhooks:4000/gitea/webhooks 
+В событиях отправки вебхука нужно указать на какое событие реагировать
 Указать отслежваемую ветку: {навание_ветки}
 
 ### Установка зависимостей

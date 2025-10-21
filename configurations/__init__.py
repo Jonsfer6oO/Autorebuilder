@@ -13,6 +13,7 @@ config = cm.Config(
     cm.WebHooks(
         path_server=env('PATH_VOLUMES'),
         main_branch=env('MAIN_BRANCH'),
-        remote=env('REMOTE')
+        remote=env('REMOTE'),
+        services_list=env('SERVICES_LIST')
     )
 )

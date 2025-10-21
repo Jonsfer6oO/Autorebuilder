@@ -12,6 +12,7 @@ class WebHooks:
     path_server: str
     main_branch: str
     remote: str
+    services_list: str
 
 
 @dataclass
