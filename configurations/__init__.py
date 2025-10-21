@@ -14,7 +14,6 @@ config = cm.Config(
         path_server=env('PATH_VOLUMES'),
         main_branch=env('MAIN_BRANCH'),
         remote=env('REMOTE'),
-        services_list=env('SERVICES_LIST'),
-        secret_key=env('SECRET_KEY')
+        services_list=env('SERVICES_LIST')
     )
 )

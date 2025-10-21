@@ -13,7 +13,6 @@ class WebHooks:
     main_branch: str
     remote: str
     services_list: str
-    secret_key: str
 
 
 @dataclass

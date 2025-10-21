@@ -5,7 +5,7 @@ import os
 import logging
 
 from configurations import config as cf
-from functions import git_pull, compare_secret_key
+from functions import git_pull
 
 gitea_logger = logging.getLogger(__name__)
 
@@ -18,14 +18,12 @@ gitea_router = APIRouter(
 async def handle_gitea_hook(request: Request):
     try:
         json = await request.json()
-        if not compare_secret_key(json['secret']):
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
         for service in cf.webhooks.services_list.split():
             if json['repository']['name'] == service:
                 pull = git_pull(os.path.join(cf.webhooks.path_server, service))
                 break
         else:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            raise  HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
         gitea_logger.info(pull)
         gitea_logger.info('Changes received')
         return {'detail': 'OK'}
